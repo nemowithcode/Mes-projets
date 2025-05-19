@@ -1,0 +1,117 @@
+Table Contrainte :
+
+INSERT INTO données_jeu.contrainte ( id_contraite,type_c,nb_elements_1,id_element)
+SELECT distinct ce.id,apc.typec,ce.nb_elements,ce.id_element
+FROM données_fournies.tuile_contrainte tc
+JOIN données_fournies.a_pour_contrainte apc on apc.id_tuile=tc.id
+JOIN données_fournies.contrainte_element ce on ce.id=apc.id_contrainte
+order by ce.id
+; 
+INSERT INTO données_jeu.contrainte ( id_contraite,type_c,libelle,nb_elements_1)
+SELECT cn.id, cn.typec,cn.libellé, cn.nb_elements
+FROM données_fournies.tuile_contrainte tc
+JOIN données_fournies.a_pour_contrainte apc on apc.id_tuile=tc.id
+JOIN données_fournies.contrainte_nombre cn on cn.id=apc.id_contrainte
+order by cn.id
+; 
+
+
+
+
+Table est_definie_par :
+INSERT INTO données_jeu.est_definie_par ( id_contraite, id_tuile )
+	SELECT c.id_contraite,t.id_tuile 
+	From données_jeu.contrainte c 
+	Join données_fournies.a_pour_contrainte a on a.id_contrainte=c.id_contraite
+	join données_jeu.tuile t on t.id_tuile=a.id_tuile
+;
+
+
+Table est_former  :
+INSERT INTO données_jeu.est_former ( id_element, id_tuile )
+	SELECT e.id_element, t.id_tuile  
+	FROM données_jeu.element e 
+	JOIN données_fournies.tuile_jeu tj on tj.id_element=e.id_element
+	Join données_jeu.tuile t on t.id_tuile=tj.id
+;
+
+
+Table est_former_de  :
+INSERT INTO données_jeu.est_former_de ( id_element, id_contraite )
+	SELECT e.id_element,c.id_contraite  
+	FROM données_jeu.element e
+	JOIN données_fournies.contrainte_element ce on ce.id_element=e.id_element
+	Join données_jeu.contrainte c on c.id_contraite=ce.id
+;
+
+
+
+Table Tuile :
+INSERT INTO données_jeu.tuile(id_tuile, type_T, fichier) 
+
+	SELECT distinct T.id, T.typet, T.fichier FROM données_fournies.tuile T
+		JOIN données_fournies.tuile_jeu TE ON TE.id=T.id
+		order by T.id
+;
+
+
+
+INSERT INTO données_jeu.tuile(id_tuile, type_T, fichier, niveau, points) 
+	SELECT TC.id,T.typet,T.fichier,TC.niveau,TC.points
+	FROM données_fournies.tuile T
+	join données_fournies.tuile_contrainte TC on TC.id=T.id
+	order by T.id
+;
+
+
+INSERT INTO données_jeu.tuile(niveau,points) 
+  	SELECT TC.niveau, TC.points
+  	FROM données_fournies.tuile T
+		JOIN données_fournies.tuile_contrainte TC ON TC.id=T.id
+		where TC.id==101
+    Group by T.id,TC.niveau, TC.points
+;
+
+
+
+Table Grille :
+INSERT INTO données_jeu.grille(id_grille, taille_grille) 
+
+	SELECT G.id, MAX(G.num_ligne) FROM données_fournies.grille G
+  group by G.id
+;
+
+
+
+
+Table Joueur:
+INSERT INTO données_jeu.joueur(id_Joueur, nom, prenom, annee_naiss, pseudo) 
+
+	SELECT J.idj, J.nom, J.prénom, J.année_naiss, J.pseudo FROM données_fournies.joueur J 
+;
+
+
+Table Element:
+INSERT INTO données_jeu.element(id_Element, nom, symbole) 
+	SELECT E.id, E.nom, E.symbole FROM données_fournies.element E
+
+;
+
+
+
+Table est_initialise_par :
+INSERT INTO données_jeu.est_initialise_par ( id_grille, id_tuile )
+SELECT g.id_grille,t.id_tuile
+From données_jeu.grille g
+join données_fournies.grille ge on ge.id=g.id_grille
+join données_jeu.tuile t on t.id_tuile=ge.id_tuile
+;
+
+
+
+
+
+
+
+
+

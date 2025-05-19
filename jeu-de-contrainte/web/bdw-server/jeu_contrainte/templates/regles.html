@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+    <meta charset="UTF-8">
+    <title>jeu de contrainte</title>
+	<link rel="stylesheet" href="/jeu_contrainte/static/css/style.css">
+	</head>
+
+	<body>
+		<header>
+			<!-- Logo cliquable -->
+			<a href="accueil">
+				<img src="/jeu_contrainte/static/img/logo_site.jpg" alt="LOGO">
+			</a>
+			
+			<!-- Titre principal -->
+			<h1>Jeu de contrainte</h1>
+			
+		</header>
+
+		<!-- Navigation -->
+		<nav>
+			<ul>
+				<ul>
+					<li><a href="accueil">accueil</a></li>
+					<li><a href="parties">parties</a></li>
+					<li><a href="regles">Règles</a></li>
+					<li><a href="statistiques">statistiques</a></li>
+					<li><a href="classement">Classements</a></li>
+				</ul>
+			</ul>
+		</nav>
+		<div id="contenu-de-la-page">
+			<div class="regles-container">
+				<h2 class="regles-title">Comment jouer à Lost Seas</h2>
+				
+				<div class="etape">
+					<h3 class="etape-title"><span class="etape-number">1</span>Configuration de la partie</h3>
+					<div class="etape-content">
+						<p>Choisissez la taille de votre grille (entre 4x4 et 12x12 cases) et le niveau de difficulté (Facile, Moyen ou Difficile).</p>
+						<p>Une grille avec des <span class="important">tuiles contraintes</span> apparaîtra. Ces tuiles spéciales déterminent les règles de placement pour les cases environnantes.</p>
+						<p class="exemple">Exemple : Une tuile contrainte 2 rouges demande que la somme des tuiles jeu sur la colonne/ligne de cette tuiles contrainte en question fasse 2 rouges.</p>
+					</div>
+				</div>
+				
+				<div class="etape">
+					<h3 class="etape-title"><span class="etape-number">2</span>Choix des tuiles</h3>
+					<div class="etape-content">
+						<p>Piochez une <span class="important">tuile jeu</span> parmi celles disponibles. Chaque tuile représente un ou plusieurs éléments du jeu (rouge, vert, gris, etc...) avec un nombre spécifique.</p>
+						<p>Examinez attentivement les motifs et directions indiqués sur la tuile.</p>
+					</div>
+				</div>
+				
+				<div class="etape">
+					<h3 class="etape-title"><span class="etape-number">3</span>Placement stratégique</h3>
+					<div class="etape-content">
+						<p>Placez votre tuile à l'intersection d'une ligne et d'une colonne marquées par des tuiles contraintes.</p>
+						<p><span class="important">Attention :</span> Une fois placée, une tuile ne peut plus être déplacée ou remplacée.</p>
+						<p>Votre placement doit respecter les contraintes imposées par toutes les tuiles contraintes concernées.</p>
+					</div>
+				</div>
+				
+				<div class="etape">
+					<h3 class="etape-title"><span class="etape-number">4</span>Remplissage de la grille</h3>
+					<div class="etape-content">
+						<p>Répétez les étapes 2 et 3 jusqu'à ce que la grille soit complètement remplie.</p>
+						<p>Plus vous respectez de contraintes, plus votre score sera élevé!</p>
+					</div>
+				</div>
+				
+				<div class="strategie">
+					<h3 class="strategie-title">Conseils stratégiques</h3>
+					<ul>
+						<li>Analysez toutes les contraintes avant de placer une tuile</li>
+						<li>Priorisez les placements qui satisfont plusieurs contraintes à la fois</li>
+						<li>Gardez un œil sur les tuiles restantes pour anticiper vos futurs coups</li>
+						<li>En mode difficile, certaines contraintes peuvent être contradictoires - faites des compromis!</li>
+					</ul>
+				</div>
+				
+				<div class="etape">
+					<h3 class="etape-title"><span class="etape-number">5</span>Calcul des points</h3>
+					<div class="etape-content">
+						<p>Chaque contrainte respectée rapporte des points bonus</p>
+						<p>Les chaînes de tuiles connectées correctement multiplient votre score</p>
+						<p>Essayez de battre votre record à chaque partie!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer>
+			<a href="https://www.univ-lyon1.fr/">SITE UCBL</a> <br>
+            <a href="plan">Plan du site</a>
+			<p>
+				Réalisé par Dhif Mohamed-Azize et Abbas Ibrahim en 2025.
+			</p>
+		</footer>
+		  
+	</body>
+</html>

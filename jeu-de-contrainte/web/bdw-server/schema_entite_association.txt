@@ -1,0 +1,35 @@
+Classement : taille_grille. niveau_difficulté, nom, date_creation_, date_mise_a_jour
+Classement_de , 0N Grille,11 Classement
+Grille : id_Grille, taille_grille, niveau_difficulté
+est_initialise_par,0N Grille,0N Tuile_contrainte
+Tuile_contrainte : niveau, points
+est_definie_par,0N contrainte, 1N Tuile_contrainte
+Contrainte : id_Contraite
+:
+
+est_Classé_dans,0N Classement,0N Joueur:classé
+A_pour, 01 Partie, 0N Grille
+est_la_pioche_de, _11 Pioche, 0N Partie
+Pioche : nb_tuile_decouverte
+/X\Tuile<-Tuile_jeu,Tuile_contrainte
+Tuile : id_Tuile, typeT, fichier
+/X\contrainte<-Contrainte_nombre,Contrainte_element
+Contrainte_nombre : typeC, libellé, nb_elements
+
+Joueur : id_Joueur, nom, prénom, année_naiss, pseudo
+A_jouer,01 Partie,0N Joueur
+Partie : id_Partie, date, horaire_debut_partie, etat
+Comporte, 0N Pioche,0N Tuile_jeu
+Tuile_jeu : num_ligne, num_colonne
+est_former,0N Element,0N Tuile_jeu
+est_former_de,0N Element,1N Contrainte_element
+Contrainte_element : nb_elements
+:
+
+:
+:
+DE, _11 Tour, 1N Partie
+Tour : numero_tour, tuile_choisie, emplacement_tuile
+A_choisie_de_jouer, 0N Tour, 1N Tuile_jeu
+Element : id_Element, nom, symbole
+:

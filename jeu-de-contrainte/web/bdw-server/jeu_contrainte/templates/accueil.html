@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+    <meta charset="UTF-8">
+    <title>jeu de contrainte</title>
+	<link rel="stylesheet" href="/jeu_contrainte/static/css/style.css">
+	</head>
+
+	<body>
+		<header>
+			<!-- Logo cliquable -->
+			<a href="accueil">
+				<img src="/jeu_contrainte/static/img/logo_site.jpg" alt="LOGO">
+			</a>
+			
+			<!-- Titre principal -->
+			<h1>Jeu de contrainte</h1>
+			
+		</header>
+
+		<!-- Navigation -->
+		<nav>
+			<ul>
+				<ul>
+					<li><a href="accueil">accueil</a></li>
+					<li><a href="parties">parties</a></li>
+					<li><a href="regles">Règles</a></li>
+					<li><a href="statistiques">statistiques</a></li>
+					<li><a href="classement">Classements</a></li>
+				</ul>
+			</ul>
+		</nav>
+		<div id="contenu-de-la-page">
+			<div class="connexion-box">
+				<h2 style="text-align: center; margin-bottom: 1.5rem; color: #2c3e50;">
+					Choisissez votre pseudo
+				</h2>
+				
+				<form method="GET" action="parties">
+					<select class="select-pseudo" name="joueur_id" required>
+						<option value="">-- Sélectionnez --</option>
+						{% for joueur in REQUEST_VARS["joueurs"] %}
+							<option value="{{ joueur.id_Joueur }}">{{ joueur.pseudo }}</option>
+						{% endfor %}
+					</select>
+					<button type="submit" class="btn-jouer">Jouer</button>
+				</form>
+			</div>
+		</div>
+
+		<footer>
+			<a href="https://www.univ-lyon1.fr/">SITE UCBL</a> <br>
+			<a href="plan">Plan du site</a>
+
+			<p>
+				Réalisé par Dhif Mohamed-Azize et Abbas Ibrahim en 2025.
+			</p>
+		</footer>
+		  
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+    <meta charset="UTF-8">
+    <title>jeu de contrainte</title>
+	<link rel="stylesheet" href="/jeu_contrainte/static/css/style.css">
+	</head>
+
+	<body>
+		<header>
+			<!-- Logo cliquable -->
+			<a href="accueil">
+				<img src="/jeu_contrainte/static/img/logo_site.jpg" alt="LOGO">
+			</a>
+			
+			<!-- Titre principal -->
+			<h1>Jeu de contrainte</h1>
+			
+		</header>
+
+		<!-- Navigation -->
+		<nav>
+			<ul>
+				<ul>
+					<li><a href="accueil">accueil</a></li>
+					<li><a href="parties">parties</a></li>
+					<li><a href="regles">Règles</a></li>
+					<li><a href="statistiques">statistiques</a></li>
+					<li><a href="classement">Classements</a></li>
+				</ul>
+			</ul>
+		</nav>
+		<div id="contenu-de-la-page" class="parties">                
+			<button onclick="afficherFormulaire()" class="bouton-creer">Créer une partie</button>
+			
+			<!-- Ajout d'un overlay/fond semi-transparent -->
+			<div id="overlay" class="overlay" onclick="cacherFormulaire()"></div>
+			
+			<!-- Formulaire modifié -->
+			<div id="formulaire-partie" class="formulaire-cache">
+				<form method="get" action="jeu">
+					<h2>Nouvelle partie</h2>
+					
+					<div class="form-group">
+						<label for="taille">Taille de la grille (4-12)</label>
+						<input type="number" id="taille" name="taille" min="4" max="12" value="4" required>
+					</div>
+					
+					<div class="form-group">
+						<label for="niveau">Niveau de difficulté</label>
+						<select id="niveau" name="niveau" required>
+							<option value="facile">Facile</option>
+							<option value="moyen">Moyen</option>
+							<option value="difficile">Difficile</option>
+						</select>
+					</div>
+					
+					<div class="form-actions">
+						<button type="submit" class="btn-submit">Commencer</button>
+						<button type="button" class="btn-cancel" onclick="cacherFormulaire()">Annuler</button>
+					</div>
+				</form>
+			</div>
+		
+			<script>
+				function afficherFormulaire() {
+					document.getElementById('overlay').style.display = 'block';
+					document.getElementById('formulaire-partie').style.display = 'block';
+					document.body.style.overflow = 'hidden'; // Empêche le défilement
+				}
+				
+				function cacherFormulaire() {
+					document.getElementById('overlay').style.display = 'none';
+					document.getElementById('formulaire-partie').style.display = 'none';
+					document.body.style.overflow = 'auto'; // Rétablit le défilement
+				}
+			</script>
+		</div>
+
+		<footer>
+			<a href="https://www.univ-lyon1.fr/">SITE UCBL</a> <br>
+            <a href="plan">Plan du site</a>
+			<p>
+				Réalisé par Dhif Mohamed-Azize et Abbas Ibrahim en 2025.
+			</p>
+		</footer>
+		  
+	</body>
+</html>

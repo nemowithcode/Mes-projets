@@ -1,0 +1,6 @@
+CREATE TABLE Nomtable (
+    attribut1 type_attribut,
+    attribut2 type_attribut,
+    PRIMARY KEY (cle1, cle2),
+    FOREIGN KEY (nom_cle) REFERENCES Tabledereference(cledelatablereference)
+);

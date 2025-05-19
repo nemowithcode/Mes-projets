@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+    <meta charset="UTF-8">
+    <title>jeu de contrainte</title>
+	<link rel="stylesheet" href="/jeu_contrainte/static/css/style.css">
+	</head>
+    <body>
+		<header>
+			<!-- Logo cliquable -->
+			<a href="accueil">
+				<img src="/jeu_contrainte/static/img/logo_site.jpg" alt="LOGO">
+			</a>
+			{% set taille = REQUEST_VARS["taille_grille"]  %}
+			<!-- Titre principal -->
+			<h1>Jeu de contrainte</h1>
+		
+			</head>
+		</header>
+
+		<!-- Navigation -->
+		<nav>
+			<ul>
+				<ul>
+					<li><a href="accueil">accueil</a></li>
+					<li><a href="parties">parties</a></li>
+					<li><a href="regles">Règles</a></li>
+					<li><a href="statistiques">statistiques</a></li>
+					<li><a href="classement">Classements</a></li>
+				</ul>
+			</ul>
+		</nav>
+        <h2 style="text-align: center;">Grille {{REQUEST_VARS["taille_grille"]}}*{{REQUEST_VARS["taille_grille"]}}</h2>
+
+		<body>
+			<div id="contenu-de-la-page" class="parties">                
+				<form method="get">
+					<label for="taille">Taille de la grille (ex: 4, 5, 6, etc.) :</label>
+					<input type="number" id="taille" name="taille" min="1" value="4" required>
+					<button type="submit">Afficher la grille</button>
+					<label for="niveau">Choisissez un niveau :</label>
+					<select id="niveau" name="niveau">
+						<option value="facile">Facile</option>
+						<option value="moyenne">Moyenne</option>
+						<option value="difficile">Difficile</option>
+					</select>
+					
+				</form>
+				<div class="grille">
+					{% set taille = REQUEST_VARS["taille_grille"]  %}
+					{% for i in range(1, taille*taille+1) %}
+					<div class="case">Case {{ i }}</div>
+					{% endfor %}
+				</div>
+			</div>
+      </body>
+<footer>
+	<a href="https://www.univ-lyon1.fr/">SITE UCBL</a> <br>
+	<a href="plan">Plan du site</a>    
+	<p>
+        Réalisé par Dhif Mohamed-Azize et Abbas Ibrahim en 2025.
+    </p>
+</footer>
+</html>

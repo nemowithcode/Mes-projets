@@ -1,0 +1,157 @@
+DROP SCHEMA données_jeu CASCADE;
+DROP SCHEMA IF EXISTS données_jeu;
+CREATE SCHEMA données_jeu;
+SET search_path TO données_jeu;
+
+
+CREATE TABLE A_choisie_de_jouer (
+  PRIMARY KEY (id_Partie, numero_tour, id_Tuile),
+  id_Partie   integer NOT NULL,
+  numero_tour integer NOT NULL,
+  id_Tuile    integer NOT NULL
+);
+
+CREATE TABLE Classement (
+  PRIMARY KEY (taille_grille,niveau_difficulte),
+  taille_grille integer,
+  niveau_difficulte VARCHAR(42) NOT NULL,
+  nom VARCHAR(42),
+  date_creation_ VARCHAR(42),
+  date_mise_a_jour VARCHAR(42),
+  id_Grille integer NOT NULL
+);
+
+CREATE TABLE Comporte (
+  PRIMARY KEY (id_Partie, nb_tuile_decouverte, id_Tuile),
+  id_Partie           integer NOT NULL,
+  nb_tuile_decouverte integer NOT NULL,
+  id_Tuile            integer NOT NULL
+);
+
+CREATE TABLE Contrainte (
+  PRIMARY KEY (id_Contraite),
+  id_Contraite  integer NOT NULL,
+  type_C        VARCHAR(42) NULL,
+  libelle       VARCHAR(42) NULL,
+  nb_elements_1 integer NULL,
+  id_element integer NULL
+);
+
+CREATE TABLE Element (
+  PRIMARY KEY (id_Element),
+  id_Element integer NOT NULL,
+  nom        VARCHAR(42),
+  symbole    VARCHAR(42)
+);
+
+CREATE TABLE est_Classe_dans (
+  PRIMARY KEY (taille_grille,niveau_difficulte, id_Joueur),
+  taille_grille integer ,
+  niveau_difficulte VARCHAR(42) NOT NULL,
+  id_Joueur         integer NOT NULL,
+  classe            integer
+);
+
+CREATE TABLE est_definie_par (
+  PRIMARY KEY (id_Contraite, id_Tuile),
+  id_Contraite integer NOT NULL,
+  id_Tuile     integer NOT NULL
+);
+
+CREATE TABLE est_former (
+  PRIMARY KEY (id_Element, id_Tuile),
+  id_Element integer NOT NULL,
+  id_Tuile   integer NOT NULL
+);
+
+CREATE TABLE est_former_de (
+  PRIMARY KEY (id_Element, id_Contraite),
+  id_Element   integer NOT NULL,
+  id_Contraite integer NOT NULL
+);
+
+CREATE TABLE est_initialise_par (
+  PRIMARY KEY (id_Grille, id_Tuile),
+  id_Grille integer NOT NULL,
+  id_Tuile  integer NOT NULL
+);
+
+CREATE TABLE Grille (
+  PRIMARY KEY (id_Grille),
+  id_Grille         integer NOT NULL,
+  taille_grille     integer,
+  niveau_difficulte VARCHAR(42)
+);
+
+CREATE TABLE Joueur (
+  PRIMARY KEY (id_Joueur),
+  id_Joueur   integer NOT NULL,
+  nom         VARCHAR(42),
+  prenom      VARCHAR(42),
+  annee_naiss integer,
+  pseudo      VARCHAR(42)
+);
+
+CREATE TABLE Partie (
+  PRIMARY KEY (id_Partie),
+  id_Partie            integer NOT NULL,
+  date                 VARCHAR(42),
+  horaire_debut_partie VARCHAR(42),
+  etat                 VARCHAR(42),
+  id_Grille            integer NULL,
+  id_Joueur            integer NULL
+);
+
+CREATE TABLE Pioche (
+  PRIMARY KEY (id_Partie, nb_tuile_decouverte),
+  id_Partie           integer NOT NULL,
+  nb_tuile_decouverte integer NOT NULL
+);
+
+CREATE TABLE Tour (
+  PRIMARY KEY (id_Partie, numero_tour),
+  id_Partie         integer NOT NULL,
+  numero_tour       integer NOT NULL,
+  tuile_choisie     integer,
+  emplacement_tuile integer
+);
+
+CREATE TABLE Tuile (
+  PRIMARY KEY (id_Tuile),
+  id_Tuile    integer NOT NULL,
+  type_T      VARCHAR(42),
+  fichier     VARCHAR(42),
+  num_ligne   integer NULL,
+  num_colonne integer NULL,
+  niveau      integer NULL,
+  points      integer NULL
+);
+
+ALTER TABLE A_choisie_de_jouer ADD FOREIGN KEY (id_Tuile) REFERENCES Tuile (id_Tuile);
+ALTER TABLE A_choisie_de_jouer ADD FOREIGN KEY (id_Partie, numero_tour) REFERENCES Tour (id_Partie, numero_tour);
+
+ALTER TABLE Classement ADD FOREIGN KEY (id_Grille) REFERENCES Grille (id_Grille);
+
+ALTER TABLE Comporte ADD FOREIGN KEY (id_Tuile) REFERENCES Tuile (id_Tuile);
+ALTER TABLE Comporte ADD FOREIGN KEY (id_Partie, nb_tuile_decouverte) REFERENCES Pioche (id_Partie, nb_tuile_decouverte);
+
+ALTER TABLE est_Classe_dans ADD FOREIGN KEY (id_Joueur) REFERENCES Joueur (id_Joueur);
+ALTER TABLE est_Classe_dans ADD FOREIGN KEY (taille_grille,niveau_difficulte) REFERENCES Classement (taille_grille,niveau_difficulte);
+
+ALTER TABLE est_definie_par ADD FOREIGN KEY (id_Tuile) REFERENCES Tuile (id_Tuile);
+ALTER TABLE est_definie_par ADD FOREIGN KEY (id_Contraite) REFERENCES Contrainte (id_Contraite);
+
+ALTER TABLE est_former ADD FOREIGN KEY (id_Tuile) REFERENCES Tuile (id_Tuile);
+ALTER TABLE est_former ADD FOREIGN KEY (id_Element) REFERENCES Element (id_Element);
+ALTER TABLE est_former_de ADD FOREIGN KEY (id_Contraite) REFERENCES Contrainte (id_Contraite);
+ALTER TABLE est_former_de ADD FOREIGN KEY (id_Element) REFERENCES Element (id_Element);
+
+ALTER TABLE est_initialise_par ADD FOREIGN KEY (id_Tuile) REFERENCES Tuile (id_Tuile);
+ALTER TABLE est_initialise_par ADD FOREIGN KEY (id_Grille) REFERENCES Grille (id_Grille);
+
+ALTER TABLE Partie ADD FOREIGN KEY (id_Joueur) REFERENCES Joueur (id_Joueur);
+ALTER TABLE Partie ADD FOREIGN KEY (id_Grille) REFERENCES Grille (id_Grille);
+
+ALTER TABLE Pioche ADD FOREIGN KEY (id_Partie) REFERENCES Partie (id_Partie);
+
+ALTER TABLE Tour ADD FOREIGN KEY (id_Partie) REFERENCES Partie (id_Partie);
