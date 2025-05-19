@@ -1,0 +1,16 @@
+release/car.o
+release/events.o
+release/game.o
+release/hitbox.o
+release/interface.o
+release/maintextuel.o
+release/mainwindow.o
+release/obstacle.o
+release/perks.o
+release/position.o
+release/savemanager.o
+release/main.o
+release/qrc_qmake_qmake_qm_files.o
+release/moc_maintextuel.o
+release/moc_mainwindow.o
+release/moc_savemanager.o

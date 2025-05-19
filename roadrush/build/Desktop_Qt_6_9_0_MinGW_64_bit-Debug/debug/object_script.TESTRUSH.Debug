@@ -1,0 +1,16 @@
+debug/car.o
+debug/events.o
+debug/game.o
+debug/hitbox.o
+debug/interface.o
+debug/maintextuel.o
+debug/mainwindow.o
+debug/obstacle.o
+debug/perks.o
+debug/position.o
+debug/savemanager.o
+debug/main.o
+debug/qrc_qmake_qmake_qm_files.o
+debug/moc_maintextuel.o
+debug/moc_mainwindow.o
+debug/moc_savemanager.o
